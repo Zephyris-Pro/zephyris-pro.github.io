@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>zephyris.pro</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./scripts.js"></script>
+    <style>
+      body {
+        background: #2e313d;
+        color: #fefefe;
+        font-family: monospace;
+        overflow-y: auto;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .container {
+        width: min(70ch, 95vw);
+        margin: 0 auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      a {
+        color: #fefefe;
+        text-decoration: underline;
+      }
+
+      a:hover {
+        color: #8b8b8b;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      ul li:before {
+        color: #fefefe;
+        content: "- ";
+        font-weight: bold;
+      }
+
+      li {
+        margin-top: 0.25em;
+        margin-bottom: 0.25;
+      }
+
+      .repo {
+        background: #292c36;
+        padding: 7px;
+        margin-bottom: 7px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h3 class="name" onclick="clearInterval(itv);" style="margin-top: 50%">
+        My repositories!
+      </h3>
+      <div id="repositories">
+        <p class="loading">Searching repositories...</p>
+      </div>
+
+      <p style="margin-top: 3em; font-size: smaller">
+        Copyright © 2025 Zephyris. All rights reserved.
+      </p>
+    </main>
+  </body>
+
+  <script defer="">
+    let repositories = fetch("https://api.github.com/users/Zephyris-Pro/repos")
+      .then((response) => response.json())
+      .then((content) => {
+        if (content) {
+          document.querySelector(".loading").remove();
+        }
+        content.forEach((element) => {
+          let div = document.createElement("div");
+          div.classList.add("repo");
+
+          let title = document.createElement("h4");
+          let link = document.createElement("a");
+          link.href = element.html_url;
+          link.target = "_blank";
+          link.innerText = element.name;
+          title.appendChild(link);
+
+          let desc = document.createElement("p");
+          desc.innerHTML = `<b>Description: </b> ${
+            element.description || "No description available"
+          }`;
+
+          let stars = document.createElement("p");
+          stars.innerHTML = `<b>Stars: </b> ${element.stargazers_count} ⚝`;
+
+          let forks = document.createElement("p");
+          forks.innerHTML = `<b>Forks: </b> ${element.forks_count} 🔗`;
+
+          div.appendChild(title);
+          div.appendChild(desc);
+          div.appendChild(stars);
+          div.appendChild(forks);
+
+          document.getElementById("repositories").appendChild(div);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching repositories:", error);
+      });
+  </script>
+
+  <script>
+    let el = document.querySelector(".name");
+    let text = el.innerText;
+    let itv = setInterval(() => scramble(el, 1700, text), 7000);
+    scramble(el, 1700);
+  </script>
+
+  <script>
+    let l = document.querySelector(".loading");
+    let txt = l.innerText;
+    let itv2 = setInterval(() => scramble(l, 3000, txt), 3700);
+    scramble(l, 3000);
+  </script>
+</html>

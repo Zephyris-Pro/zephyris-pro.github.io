@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>zephyris.pro</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="scripts.js"></script>
+    <style>
+      body {
+        background: #2e313d;
+        color: #fefefe;
+        font-family: monospace;
+      }
+      .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(70ch, 95vw);
+      }
+
+      a {
+        color: #fefefe;
+        text-decoration: underline;
+      }
+
+      a:hover {
+        color: #8b8b8b;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-weight: bold;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      ul li:before {
+        color: #fefefe;
+        content: "- ";
+        font-weight: bold;
+      }
+
+      li {
+        margin-top: 0.25em;
+        margin-bottom: 0.25;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h3 class="name" onclick="clearInterval(itv);">Hi, I'm Zephyris!</h3>
+      <p>
+        Passionate about computer science and programming, I strive to showcase
+        the best of myself in my <a href="./repositories.html">projects</a>
+      </p>
+      <p>
+        I sometimes create new projects, like my
+        <a href="https://github.com/Zephyris-Pro/VkDownloader">VkDownloader</a>,
+        <a href="https://github.com/Zephyris-Pro/repositories">contributing</a>
+        to projects is always welcome. Often, my projects are on the edge of
+        legality, but I love the risk! I also love reverse engineering, because
+        I believe that knowledge and informations should be shared and
+        accessible to everyone.
+      </p>
+      <p>
+        You can find my work on github,
+        <a href="https://github.com/Zephyris-Pro">github.com</a>, and scattered
+        throughout the interwebs.
+      </p>
+      <h4>Services</h4>
+      <p>There are no services running at the moment, but soon!</p>
+
+      <p>
+        <b>localhost:</b> <a href="./localhost.html">127.0.0.1</a>
+    </p>
+
+      <p style="margin-top: 3em; font-size: smaller">
+        Copyright © 2025 Zephyris. All rights reserved.
+      </p>
+
+      <p style="height: 0; opacity: 0">
+        Thanks to <a href="https://github.com/bain3">Bain3</a> (<a
+          href="https://bain.cz"
+          >bain.cz</a
+        >) for the design idea.
+      </p>
+    </main>
+  </body>
+  <script>
+    let el = document.querySelector(".name");
+    let text = el.innerText;
+    let itv = setInterval(() => scramble(el, 1700, text), 7000);
+    scramble(el, 1700);
+  </script>
+</html>
