@@ -95,7 +95,8 @@
           let link = document.createElement("a");
           link.href = element.html_url;
           link.target = "_blank";
-          link.innerText = element.name;
+          link.innerHTML = element.fork ? `${element.name}<span style="font-size: 11px;"> (Fork)</span>` : element.name;
+
           title.appendChild(link);
 
           let desc = document.createElement("p");
